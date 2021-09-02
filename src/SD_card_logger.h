@@ -9,7 +9,7 @@ class sd_card_logger
 public:
     String _filename;
 
-    int logging_freq;
+    int logging_freq;// in ms
     String logmessage;
     String _bootmessage;
     sd_card_logger(String filename, File *file, Simpletimer *timer)
@@ -18,8 +18,8 @@ public:
         _file = file;
         _timer = timer;
     }
-    void init(String bootmessage);
-    bool log(String logmessage, int logging_freq);
+    void init(String bootmessage);// initialize with message // empty string if you dont want to init with message
+    bool log(String logmessage, int logging_freq);//log your message with given freq
 
 private:
     Simpletimer *_timer;
