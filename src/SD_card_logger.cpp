@@ -5,15 +5,16 @@ void sd_card_logger::init(String bootmessage)
     _bootmessage = bootmessage;
     pinMode(13, OUTPUT);
 
-    // init the SD card
+   
     if (!SD.begin())
     {
 
-        // don't do anything more:
+       //you can do something on fail if you want  add code here
     }
     sd_card_logger::_file = &SD.open(_filename, FILE_WRITE);
     if (!this->_file)
     {
+         //you can do something on fail if you want  add code here
     }
     _file->println();
     _file->println(_bootmessage);
@@ -26,7 +27,7 @@ bool sd_card_logger::log(String logmessage, int logging_freq)
     if (_timer->timer(logging_freq))
     {
 
-        // check if it's been over 10 ms since the last line added
+       
         sd_card_logger::_file = &SD.open(_filename, FILE_WRITE);
         if (!sd_card_logger::_file)
         {
