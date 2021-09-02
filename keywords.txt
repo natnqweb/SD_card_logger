@@ -1,0 +1,10 @@
+# Syntax Coloring Map For LCD_I2C
+
+# Classes (KEYWORD1)
+sd_card_logger	KEYWORD1
+File	KEYWORD1
+Simpletimer KEYWORD1
+# Functions (KEYWORD2)
+
+init	KEYWORD2
+log	KEYWORD2
