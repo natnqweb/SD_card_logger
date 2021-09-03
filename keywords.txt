@@ -1,4 +1,4 @@
-# Syntax Coloring Map For LCD_I2C
+# Syntax Coloring Map For SD_card_logger
 
 # Classes (KEYWORD1)
 sd_card_logger	KEYWORD1
