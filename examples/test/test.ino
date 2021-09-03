@@ -20,5 +20,5 @@ void loop()
         sprintf(buffer, "%d %d\n", i, i * i);
     }
 
-    logger1.log(buffer, 1000);//logg buffer every 1 ms
+    logger1.log(buffer, 1000);//logg buffer every 1 s
 }
