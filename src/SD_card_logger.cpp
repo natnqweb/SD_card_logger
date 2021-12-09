@@ -3,7 +3,7 @@
 void sd_card_logger::init(String bootmessage)
 {
     _bootmessage = bootmessage;
-    pinMode(13, OUTPUT);
+   
 
    
     if (!SD.begin())
