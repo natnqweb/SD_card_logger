@@ -1,43 +1,58 @@
 #include "SD_card_logger.h"
 
-void sd_card_logger::init(String bootmessage, uint8_t CSpin)
+void sd_card_logger::init(String bootmessage, uint8_t pin_cs)
 {
-    if (CSpin != SD_DEFAULT_CS_PIN)
-        this->CSpin = CSpin;
+    if (pin_cs != SD_DEFAULT_CS_PIN)
+        this->pin_cs = pin_cs;
 
-    // init the SD card
-    if (!SD.begin(this->CSpin))
+    if (!SD.begin(this->pin_cs))
     {
+        return;
+    }
 
-        // don't do anything more:
-    }
-    _file = &SD.open(_filename, FILE_WRITE);
-    if (!_file)
+    txt_file = &SD.open(txt_filename, FILE_WRITE);
+
+    if (!txt_file)
     {
+        return;
     }
-    _file->println();
-    _file->println(bootmessage);
-    _file->close();
+    txt_file->println();
+    txt_file->println(bootmessage);
+    txt_file->close();
 }
 
 bool sd_card_logger::log(String logmessage, int logging_freq)
 {
-    if (_timer->timer(logging_freq))
+    if (timer->timer(logging_freq))
     {
-
-        // check if it's been over 10 ms since the last line added
-        _file = &SD.open(_filename, FILE_WRITE);
-        if (!_file)
+        txt_file = &SD.open(txt_filename, FILE_WRITE);
+        if (!txt_file)
         {
             return false;
         }
         else
         {
 
-            _file->print(logmessage);
+            txt_file->print(logmessage);
 
-            _file->close();
+            txt_file->close();
             return (true);
         }
+    }
+}
+bool sd_card_logger::log(String logmessage)
+{
+
+    txt_file = &SD.open(txt_filename, FILE_WRITE);
+    if (!txt_file)
+    {
+        return false;
+    }
+    else
+    {
+
+        txt_file->print(logmessage);
+        txt_file->close();
+        return (true);
     }
 }

@@ -1,5 +1,4 @@
-#ifndef SD_CARD_LOGGER_H
-#define SD_CARD_LOGGER_H
+#pragma once
 #include <Arduino.h>
 #include <SD.h>
 #include <Simpletimer.h>
@@ -7,25 +6,24 @@
 class sd_card_logger
 {
 public:
-    sd_card_logger(String filename, uint8_t CSpin = SD_DEFAULT_CS_PIN)
+    sd_card_logger(String filename, uint8_t pin_cs = SD_DEFAULT_CS_PIN)
     {
-        this->CSpin = CSpin;
-        _filename = filename;
-        _timer = new Simpletimer;
+        this->pin_cs = pin_cs;
+        txt_filename = filename;
+        timer = new Simpletimer;
     }
     ~sd_card_logger()
     {
-        delete[] _timer;
+        delete timer;
     }
-    void init(String bootmessage, uint8_t CSpin = SD_DEFAULT_CS_PIN);
+    void init(String bootmessage, uint8_t pin_cs = SD_DEFAULT_CS_PIN);
     bool log(String logmessage, int logging_freq);
+    bool log(String logmessage);
 
 private:
-    uint8_t CSpin;
-    Simpletimer *_timer = nullptr;
-    File *_file = nullptr;
-    String _filename;
+    uint8_t pin_cs;
+    Simpletimer *timer = nullptr;
+    File *txt_file = nullptr;
+    String txt_filename;
     unsigned long lastMillis = 0;
 };
-
-#endif
