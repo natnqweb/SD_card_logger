@@ -21,9 +21,9 @@ public:
     bool log(String logmessage);
 
 private:
-    uint8_t pin_cs;
+    uint8_t pin_cs{SD_DEFAULT_CS_PIN};
     Simpletimer *timer = nullptr;
     File *txt_file = nullptr;
-    String txt_filename;
+    String txt_filename{};
     unsigned long lastMillis = 0;
 };
