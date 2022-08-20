@@ -1,10 +1,10 @@
 # Syntax Coloring Map For SD_card_logger
 
 # Classes (KEYWORD1)
-sd_card_logger	KEYWORD1
-File	KEYWORD1
+sd_card_logger  KEYWORD1
+File    KEYWORD1
 Simpletimer KEYWORD1
 # Functions (KEYWORD2)
 
-init	KEYWORD2
-log	KEYWORD2
+init    KEYWORD2
+log KEYWORD2
