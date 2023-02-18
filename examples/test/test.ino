@@ -9,7 +9,7 @@
 Simpletimer timer1{};
 char buffer[30]{};
 static const uint8_t CS = 10; // micro SD CS pin by default it is 10
-int i{ 0 };
+unsigned long i{ 0 };
 sd_card_logger logger1("XY.txt", CS);// create object
 void setup()
 {// this is first line created in file
