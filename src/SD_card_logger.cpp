@@ -45,14 +45,19 @@ bool sd_card_logger::log(String logmessage, int logging_freq)
 {
     if (m_timer->timer(logging_freq))
     {
-        File file = SD.open(m_filename, FILE_WRITE);
-        if (!file)
-        {
-            return false;
-        }
-        file.print(logmessage);
-        file.close();
-        return true;
+        return log(logmessage);
     }
     return false;
+}
+
+bool sd_card_logger::log(String logmessage)
+{
+    File file = SD.open(m_filename, FILE_WRITE);
+    if (!file)
+    {
+        return false;
+    }
+    file.print(logmessage);
+    file.close();
+    return true;
 }

@@ -3,10 +3,13 @@
 #include <Arduino.h>
 #include <SD.h>
 #include <Simpletimer.h>
-#define SD_DEFAULT_CS_PIN 10
+
 class sd_card_logger
 {
 public:
+    enum eDefaults {
+        SD_DEFAULT_CS_PIN = 10
+    };
     sd_card_logger(String A_filename, uint8_t A_CSpin);
     sd_card_logger(String A_filename);
     ~sd_card_logger();
