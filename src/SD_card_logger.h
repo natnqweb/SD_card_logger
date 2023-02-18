@@ -7,25 +7,18 @@
 class sd_card_logger
 {
 public:
-    sd_card_logger(String filename, uint8_t CSpin = SD_DEFAULT_CS_PIN)
-    {
-        this->CSpin = CSpin;
-        _filename = filename;
-        _timer = new Simpletimer;
-    }
-    ~sd_card_logger()
-    {
-        delete[] _timer;
-    }
-    void init(String bootmessage, uint8_t CSpin = SD_DEFAULT_CS_PIN);
-    bool log(String logmessage, int logging_freq);
+    sd_card_logger(String A_filename, uint8_t A_CSpin);
+    sd_card_logger(String A_filename);
+    ~sd_card_logger();
+
+    void init(String A_bootmessage);
+    void init(String A_bootmessage, uint8_t A_CSpin);
+    bool log(String A_logmessage, int A_logging_freq);
 
 private:
-    uint8_t CSpin;
-    Simpletimer *_timer = nullptr;
-    File *_file = nullptr;
-    String _filename;
-    unsigned long lastMillis = 0;
+    uint8_t m_CSpin{ SD_DEFAULT_CS_PIN };
+    Simpletimer* m_timer = nullptr;
+    String m_filename{};
 };
 
 #endif
