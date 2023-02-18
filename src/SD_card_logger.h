@@ -17,6 +17,7 @@ public:
     void init(String A_bootmessage);
     void init(String A_bootmessage, uint8_t A_CSpin);
     bool log(String A_logmessage, int A_logging_freq);
+    bool log(String A_logmessage);
 
 private:
     uint8_t m_CSpin{ SD_DEFAULT_CS_PIN };
