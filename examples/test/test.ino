@@ -6,23 +6,30 @@
 // ---------------------------- here you can check how to connect SD card reader to Arduino---------------------------------------
 
 // in order to log to SD you need my Simpletimer library https://github.com/natnqweb/Simpletimer
-Simpletimer timer1{};
+
 char buffer[30]{};
 static const uint8_t CS = 10; // micro SD CS pin by default it is 10
 unsigned long i{ 0 };
-sd_card_logger logger1("XY.txt", CS);// create object
+sd_card_logger logger("XY.txt", CS);// create object
+
+void UpdateBuffer()
+{
+    i++;
+    sprintf(buffer, "%lu %lu\n", i, (unsigned long)(i * i));
+}
+
 void setup()
-{// this is first line created in file
-    logger1.init("X X^2");
+{
+    // this is first line created in file
     //you can provide empty string if you want
+    logger.init("X X^2");
+
+    UpdateBuffer();
 }
 void loop()
 {
-    if (timer1.timer(999))// entry every 999 ms
+    if (logger.log(buffer, 1000))// log buffer every 1s after log update buffer
     {
-        i++;
-        sprintf(buffer, "%d %d\n", i, i * i);
+        UpdateBuffer();
     }
-
-    logger1.log(buffer, 1000);//logg buffer every 1 s
 }
